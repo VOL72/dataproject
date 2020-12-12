@@ -22,13 +22,13 @@ namespace WindowsFormsApp2
         {
             string isbn,bookname,writer,price,type,publisher,number;
 
-            isbn = textBox1.Text.ToString();
-            bookname = textBox2.Text.ToString();
-            writer = textBox3.Text.ToString();
+            isbn = textBox1.Text;
+            bookname = textBox2.Text;
+            writer = textBox3.Text;
             price = textBox4.Text;
-            type = textBox5.Text.ToString();
-            publisher = textBox6.Text.ToString();
-            number = textBox7.Text.ToString();
+            type = textBox5.Text;
+            publisher = textBox6.Text;
+            number = textBox7.Text;
             if (isbn != null)
             { 
                     databaseConnection db = new databaseConnection();

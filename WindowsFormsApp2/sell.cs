@@ -52,7 +52,7 @@ namespace WindowsFormsApp2
             MySqlConnection conn = db.GetConnection();
             try
             {
-           /*     int a = int.Parse(textBox2.Text);
+           /*   int a = int.Parse(textBox2.Text);
                 int b=0 ;
                 string str = "select number from bookinfo where=" + "'" + textBox1.Text + "'";
                 MySqlCommand c1 = new MySqlCommand(str, conn);
@@ -62,7 +62,7 @@ namespace WindowsFormsApp2
                     b = r1.GetInt32("number");
                 }
                 int c = b - a;
-                string number = c.ToString(); // */
+                string number = c.ToString();  */
                 string s1 = "update bookinfo set number=" + 200 + " where bookname=" + "'" + "数据结构" + "'";
                 MySqlCommand c2 = new MySqlCommand(s1, conn);
                 c2.ExecuteNonQuery();
