@@ -52,20 +52,12 @@ namespace WindowsFormsApp2
             MySqlConnection conn = db.GetConnection();
             try
             {
-                int a = int.Parse(textBox2.Text);
-                int b=0 ;
-                string str = "select number from bookinfo where=" + "'" + textBox1.Text + "'";
-                MySqlCommand c1 = new MySqlCommand(str, conn);
-                MySqlDataReader r1 = c1.ExecuteReader();
-                if (r1.Read())
-                {
-                    b = r1.GetInt32("number");
-                }
-                int c = b - a;
-                string number = c.ToString();  
-                string s1 = "update bookinfo set number=" + number + " where bookname=" + "'" +textBox1.Text+ "'";
+                int number = int.Parse(textBox2.Text);
+                string bookname = textBox1.Text;
+                string s1 = "update bookinfo set number=number-" + number + " where bookname=" + "'" + bookname + "'";
                 MySqlCommand c2 = new MySqlCommand(s1, conn);
                 c2.ExecuteNonQuery();
+                dataGridView1.Rows.Clear();
                 string sql = "select * from bookinfo";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -76,7 +68,6 @@ namespace WindowsFormsApp2
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("bookname");
                     this.dataGridView1.Rows[index].Cells[2].Value = reader.GetInt32("price");
                     this.dataGridView1.Rows[index].Cells[3].Value = reader.GetInt32("number");
-
                 }
             }
             catch (MySqlException ex)
