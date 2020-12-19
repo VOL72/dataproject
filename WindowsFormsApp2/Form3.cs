@@ -33,5 +33,11 @@ namespace WindowsFormsApp2
             sell s1 = new sell();
             s1.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            find fi = new find();
+            fi.Show();
+        }
     }
 }
