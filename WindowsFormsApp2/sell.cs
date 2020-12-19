@@ -50,11 +50,33 @@ namespace WindowsFormsApp2
         {
             databaseConnection db = new databaseConnection();
             MySqlConnection conn = db.GetConnection();
+            float discount = 0;
+            string levelSql = "select customer_level from customer where customer_id=" + textBox3.Text + ";";
+            MySqlCommand selectLevel = new MySqlCommand(levelSql, conn);
+            MySqlDataReader result = selectLevel.ExecuteReader();
+            int level = 0;
+
+            if (result.Read())
+            {
+                level = result.GetInt32("customer_level");
+            }
+            result.Close();
+            //textBox4.Text = level.ToString();
+            string discountSql = "select discount from customer_level where customer_level=" + level.ToString() + ";";
+            MySqlCommand selectDiscount = new MySqlCommand(discountSql, conn);
+            MySqlDataReader getDiscount = selectDiscount.ExecuteReader();
+
+            if (getDiscount.Read())
+            {
+                discount = getDiscount.GetFloat("discount");
+            }
+            getDiscount.Close();
+            //textBox4.Text = discount.ToString();
             try
             {
                 int number = int.Parse(textBox2.Text);
-                string bookname = textBox1.Text;
-                string s1 = "update bookinfo set number=number-" + number + " where bookname=" + "'" + bookname + "'";
+                string isbn = textBox1.Text;
+                string s1 = "update bookinfo set number=number-" + number + " where isbn=" + "'" + isbn + "'";
                 MySqlCommand c2 = new MySqlCommand(s1, conn);
                 c2.ExecuteNonQuery();
                 dataGridView1.Rows.Clear();
@@ -68,6 +90,36 @@ namespace WindowsFormsApp2
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("bookname");
                     this.dataGridView1.Rows[index].Cells[2].Value = reader.GetInt32("price");
                     this.dataGridView1.Rows[index].Cells[3].Value = reader.GetInt32("number");
+                }
+                reader.Close();
+
+                float price = 0;
+                string priceSql = "select price from bookinfo where isbn='" + isbn + "';";
+                MySqlCommand selectPrice = new MySqlCommand(priceSql, conn);
+                MySqlDataReader getPrice = selectPrice.ExecuteReader();
+                
+                
+                if (getPrice.Read())
+                {
+                    price = getPrice.GetFloat("price");
+                }
+                getPrice.Close();
+                //textBox4.Text = price.ToString();
+                float num = number;
+                float totalPrice = num * price * discount;
+                textBox4.Text = totalPrice.ToString();
+                //string insertOrder = "insert into order (order_id,customer_id,isbn,time,amount,number) values (null,'" + textBox3.Text + "','" + isbn + "','" + DateTime.Now.ToLocalTime().ToString() + "'," + totalPrice.ToString() + "," + number.ToString() + ");";
+                //textBox4.Text = DateTime.Now.ToLocalTime();
+                string insertOrder = "insert into `bookmanager`.`order` (`order_id`, `customer_id`, `isbn`, `time`, `amount`, `number`)values(NULL, '" + textBox3.Text + "', '" + isbn + "', '" + DateTime.Now.ToLocalTime().ToString() + "', '"+ totalPrice.ToString() + "', '" + number.ToString() + "');";
+                MySqlCommand addOrder = new MySqlCommand(insertOrder, conn);
+                int res = addOrder.ExecuteNonQuery();
+                if(res == 1)
+                {
+                    MessageBox.Show("订单创建成功");
+                }
+                else
+                {
+                    MessageBox.Show("订单创建失败");
                 }
             }
             catch (MySqlException ex)
@@ -84,6 +136,11 @@ namespace WindowsFormsApp2
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
