@@ -34,7 +34,7 @@ namespace WindowsFormsApp2
                     this.dataGridView1.Rows[index].Cells[0].Value = reader.GetString("isbn");
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("bookname");
                     this.dataGridView1.Rows[index].Cells[2].Value = reader.GetString("writer");
-                    this.dataGridView1.Rows[index].Cells[3].Value = reader.GetInt32("price");
+                    this.dataGridView1.Rows[index].Cells[3].Value = reader.GetFloat("price");
                     this.dataGridView1.Rows[index].Cells[4].Value = reader.GetString("type");
                     this.dataGridView1.Rows[index].Cells[5].Value = reader.GetString("publisher");
                     this.dataGridView1.Rows[index].Cells[6].Value = reader.GetInt32("number");
@@ -49,6 +49,11 @@ namespace WindowsFormsApp2
             {
                 conn.Close();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
