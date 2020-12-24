@@ -26,6 +26,7 @@ namespace WindowsFormsApp2
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,6 +39,12 @@ namespace WindowsFormsApp2
         {
             find fi = new find();
             fi.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            update u1 = new update();
+            u1.Show();
         }
     }
 }
