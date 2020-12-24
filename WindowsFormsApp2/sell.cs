@@ -32,7 +32,7 @@ namespace WindowsFormsApp2
                     int index = this.dataGridView1.Rows.Add();
                     this.dataGridView1.Rows[index].Cells[0].Value = reader.GetString("isbn");
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("bookname");
-                    this.dataGridView1.Rows[index].Cells[2].Value = reader.GetFloat("price");
+                    this.dataGridView1.Rows[index].Cells[2].Value = reader.GetInt32("price");
                     this.dataGridView1.Rows[index].Cells[3].Value = reader.GetInt32("number");
 
                 }
@@ -88,7 +88,7 @@ namespace WindowsFormsApp2
                     int index = this.dataGridView1.Rows.Add();
                     this.dataGridView1.Rows[index].Cells[0].Value = reader.GetString("isbn");
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("bookname");
-                    this.dataGridView1.Rows[index].Cells[2].Value = reader.GetFloat("price");
+                    this.dataGridView1.Rows[index].Cells[2].Value = reader.GetInt32("price");
                     this.dataGridView1.Rows[index].Cells[3].Value = reader.GetInt32("number");
                 }
                 reader.Close();
