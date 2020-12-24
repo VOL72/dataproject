@@ -46,5 +46,17 @@ namespace WindowsFormsApp2
             update u1 = new update();
             u1.Show();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            changepwd c1 = new changepwd();
+            c1.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            changePower c2 = new changePower();
+            c2.Show();
+        }
     }
 }

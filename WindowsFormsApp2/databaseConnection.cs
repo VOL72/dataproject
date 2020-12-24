@@ -11,7 +11,7 @@ namespace WindowsFormsApp2
 {
     class databaseConnection
     {
-        private String connetStr = "server=127.0.0.1;port=3306;user=root;password=123456;database=bookmanager;";
+        private String connetStr = "server=127.0.0.1;port=3306;user=root;password=a724352105;database=bookmanager;";
 
         public MySqlConnection GetConnection()
         {

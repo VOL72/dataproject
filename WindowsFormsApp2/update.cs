@@ -49,13 +49,15 @@ namespace WindowsFormsApp2
             }
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             databaseConnection db = new databaseConnection();
             MySqlConnection conn = db.GetConnection();
             try
             {
-                string sql = "update bookinfo set " +comboBox1.Text+"= '"+textBox2.Text+"' where " + comboBox1.Text + " = '" + textBox1.Text + "' and isbn='"+textBox3.Text+"'";
+                string sql = "update bookinfo set " + comboBox1.Text + "= '" + textBox1.Text + "' where " + "isbn='" + textBox2.Text + "'";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 string s1 = "select * from bookinfo";
@@ -83,11 +85,6 @@ namespace WindowsFormsApp2
             {
                 conn.Close();
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
