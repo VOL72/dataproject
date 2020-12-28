@@ -58,5 +58,11 @@ namespace WindowsFormsApp2
             changePower c2 = new changePower();
             c2.Show();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            customer cs = new customer();
+            cs.Show();
+        }
     }
 }
