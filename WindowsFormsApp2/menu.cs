@@ -64,5 +64,11 @@ namespace WindowsFormsApp2
             customer cs = new customer();
             cs.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.Show();
+        }
     }
 }

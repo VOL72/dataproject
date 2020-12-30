@@ -46,7 +46,7 @@ namespace WindowsFormsApp2
                 conn.Close();
             }
         }
-        
+
         public void d()
         {
             databaseConnection db = new databaseConnection();
@@ -93,7 +93,6 @@ namespace WindowsFormsApp2
                     this.dataGridView1.Rows[index].Cells[0].Value = reader.GetInt32("customer_id");
                     this.dataGridView1.Rows[index].Cells[1].Value = reader.GetString("customer_name");
                     this.dataGridView1.Rows[index].Cells[2].Value = reader.GetInt32("customer_level");
-                   
                 }
 
             }
@@ -109,7 +108,8 @@ namespace WindowsFormsApp2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            insertvip iv = new insertvip();
+            iv.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -140,6 +140,11 @@ namespace WindowsFormsApp2
             {
                 conn.Close();
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

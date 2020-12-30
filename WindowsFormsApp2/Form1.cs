@@ -35,8 +35,8 @@ namespace WindowsFormsApp2
                 this.dataGridView1.Rows[index].Cells[1].Value = reader.GetInt32("customer_id");
                 this.dataGridView1.Rows[index].Cells[2].Value = reader.GetString("isbn");
                 this.dataGridView1.Rows[index].Cells[3].Value = reader.GetDateTime("time").ToString();
-                this.dataGridView1.Rows[index].Cells[4].Value = reader.GetInt32("amount");
-                this.dataGridView1.Rows[index].Cells[5].Value = reader.GetFloat("number");
+                this.dataGridView1.Rows[index].Cells[4].Value = reader.GetFloat("amount");
+                this.dataGridView1.Rows[index].Cells[5].Value = reader.GetInt32("number");
             }
             reader.Close();
             conn.Close();
@@ -121,7 +121,7 @@ namespace WindowsFormsApp2
         private void button4_Click(object sender, EventArgs e)
         {
             dataGridView3.Rows.Clear();
-            string sql = "SELECT bookinfo.bookname ,SUM(bookorder.number) FROM bookorder,bookinfo WHERE bookorder.isbn = bookinfo.isbn GROUP BY bookinfo.bookname ORDER BY bookinfo.bookname DESC limit 5";
+            string sql = "SELECT bookinfo.bookname ,SUM(bookorder.number) FROM bookorder, bookinfo WHERE bookorder.isbn = bookinfo.isbn GROUP BY bookinfo.bookname ORDER BY bookinfo.bookname DESC LIMIT 5";
             databaseConnection db = new databaseConnection();
             MySqlConnection conn = db.GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -187,10 +187,30 @@ namespace WindowsFormsApp2
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                textBox3.Text = "本季度销售额为" + reader.GetFloat("sum(amount)").ToString();
+                textBox3.Text = "本月销售额为" + reader.GetFloat("sum(amount)").ToString();
             }
             reader.Close();
             conn.Close();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string sql = "SELECT sum(amount) FROM bookorder WHERE DATE(bookorder.time) = CURDATE();";
+            databaseConnection db = new databaseConnection();
+            MySqlConnection conn = db.GetConnection();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                textBox4.Text = "本日销售额为" + reader.GetFloat("sum(amount)").ToString();
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

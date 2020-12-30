@@ -176,6 +176,12 @@
     <Compile Include="update.Designer.cs">
       <DependentUpon>update.cs</DependentUpon>
     </Compile>
+    <Compile Include="insertvip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="insertvip.Designer.cs">
+      <DependentUpon>insertvip.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="customer.resx">
       <DependentUpon>customer.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,8 +224,8 @@
     <EmbeddedResource Include="update.resx">
       <DependentUpon>update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vip.resx">
-      <DependentUpon>vip.cs</DependentUpon>
+    <EmbeddedResource Include="insertvip.resx">
+      <DependentUpon>insertvip.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

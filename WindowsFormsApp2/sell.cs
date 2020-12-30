@@ -60,10 +60,6 @@ namespace WindowsFormsApp2
             {
                 level = result.GetInt32("customer_level");
             }
-            else
-            {
-                MessageBox.Show("no found");
-            }
             result.Close();
             //textBox4.Text = level.ToString();
             string discountSql = "select discount from customer_level where customer_level=" + level.ToString() + ";";
@@ -101,8 +97,7 @@ namespace WindowsFormsApp2
                 string priceSql = "select price from bookinfo where isbn='" + isbn + "';";
                 MySqlCommand selectPrice = new MySqlCommand(priceSql, conn);
                 MySqlDataReader getPrice = selectPrice.ExecuteReader();
-                
-                
+                               
                 if (getPrice.Read())
                 {
                     price = getPrice.GetFloat("price");
@@ -125,6 +120,33 @@ namespace WindowsFormsApp2
                 {
                     MessageBox.Show("订单创建失败");
                 }
+                string isenough = "select sum(amount) from bookorder where customer_id = '" + textBox3.Text + "'";
+                MySqlCommand vip = new MySqlCommand(isenough, conn);
+                MySqlDataReader isvip = vip.ExecuteReader();
+                if (isvip.Read())
+                {
+                    float money = isvip.GetFloat("sum(amount)");
+                    if(money > 100 && money <= 200 && level < 1)
+                    {
+                        MessageBox.Show("可以将该会员升级为1级");
+                    }
+                    else if (money > 200 && money <= 300 && level < 2)
+                    {
+                        MessageBox.Show("可以将会员升为2级");
+                    }
+                    else if (money > 300 && money <= 400 && level < 3)
+                    {
+                        MessageBox.Show("可以将会员升为3级");
+                    }
+                    else if (money > 400 && money <= 500 && level < 4)
+                    {
+                        MessageBox.Show("可以将会员升为4级");
+                    }
+                    else if (money > 500 && level < 5)
+                    {
+                        MessageBox.Show("可以将会员升为5级");
+                    }
+                }
             }
             catch (MySqlException ex)
             {
@@ -136,13 +158,21 @@ namespace WindowsFormsApp2
             }
 
         }  
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-       
+        private void button3_Click(object sender, EventArgs e)
+        {
+            insertvip iv = new insertvip();
+            iv.Show();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
