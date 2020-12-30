@@ -61,8 +61,8 @@ namespace WindowsFormsApp2
 
         private void button7_Click(object sender, EventArgs e)
         {
-            vip vip = new vip();
-            vip.Show();
+            customer cs = new customer();
+            cs.Show();
         }
     }
 }
