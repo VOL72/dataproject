@@ -106,7 +106,7 @@ namespace WindowsFormsApp2
             this.button2.Text = "返回";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Form5
+            // changepwd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,8 +119,9 @@ namespace WindowsFormsApp2
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form5";
+            this.Name = "changepwd";
             this.Text = "修改密码";
+            this.Load += new System.EventHandler(this.changepwd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -61,5 +61,10 @@ namespace WindowsFormsApp2
             reader.Close();
             conn.Close();
         }
+
+        private void changepwd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

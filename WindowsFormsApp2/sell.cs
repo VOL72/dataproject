@@ -60,6 +60,10 @@ namespace WindowsFormsApp2
             {
                 level = result.GetInt32("customer_level");
             }
+            else
+            {
+                MessageBox.Show("no found");
+            }
             result.Close();
             //textBox4.Text = level.ToString();
             string discountSql = "select discount from customer_level where customer_level=" + level.ToString() + ";";
@@ -107,10 +111,10 @@ namespace WindowsFormsApp2
                 //textBox4.Text = price.ToString();
                 float num = number;
                 float totalPrice = num * price * discount;
-                textBox4.Text = totalPrice.ToString();
+                //textBox4.Text = totalPrice.ToString();
                 //string insertOrder = "insert into order (order_id,customer_id,isbn,time,amount,number) values (null,'" + textBox3.Text + "','" + isbn + "','" + DateTime.Now.ToLocalTime().ToString() + "'," + totalPrice.ToString() + "," + number.ToString() + ");";
                 //textBox4.Text = DateTime.Now.ToLocalTime();
-                string insertOrder = "insert into `bookmanager`.`order` (`order_id`, `customer_id`, `isbn`, `time`, `amount`, `number`)values(NULL, '" + textBox3.Text + "', '" + isbn + "', '" + DateTime.Now.ToLocalTime().ToString() + "', '"+ totalPrice.ToString() + "', '" + number.ToString() + "');";
+                string insertOrder = "insert into `bookmanager`.`bookorder` (`order_id`, `customer_id`, `isbn`, `time`, `amount`, `number`)values(NULL, '" + textBox3.Text + "', '" + isbn + "', '" + DateTime.Now.ToLocalTime().ToString() + "', '"+ totalPrice.ToString() + "', '" + number.ToString() + "');";
                 MySqlCommand addOrder = new MySqlCommand(insertOrder, conn);
                 int res = addOrder.ExecuteNonQuery();
                 if(res == 1)
@@ -138,10 +142,7 @@ namespace WindowsFormsApp2
             this.Close();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
 
